@@ -2,7 +2,7 @@
 
 A minimal task tracker built with plain PHP (no framework, no database). Tasks are saved in a flat JSON file.
 
-**Group members:** [Your name], [Partner name]   |   **Course:** [Course name and number]   |   **Instructor:** [Name]
+**Group members:** Mohamed Alarbah and Mohamed Abdulla
 
 ## Features
 - **Create** a task: title (required), description, priority (Low / Medium / High), due date (YYYY-MM-DD, optional)
