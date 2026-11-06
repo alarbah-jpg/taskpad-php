@@ -1,0 +1,53 @@
+@startuml
+title TaskPad PHP - Class Diagram (analysis level)
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+class Task {
+  - id : string
+  - title : string
+  - description : string
+  - priority : string
+  - due : ?date
+  - completed : bool
+  - created : datetime
+  + {static} create(clean : array) : Task
+  + {static} newId() : string
+  + {static} isValidId(id : string) : bool
+}
+
+class TaskRepository {
+  - path : string
+  + all() : Task[]
+  + find(id : string) : ?Task
+  + add(task : Task) : void
+  + update(task : Task) : bool
+  + delete(id : string) : bool
+  + {static} filter(tasks : Task[], q : string, priority : string) : Task[]
+  + {static} counts(tasks : Task[]) : array
+  + {static} sortForDisplay(tasks : Task[]) : Task[]
+}
+
+class Validator {
+  + validateCreate(input : array) : array
+  + sanitizeFilters(query : array) : array
+  + {static} isValidDate(value : string) : bool
+}
+
+class Controller <<public/*.php pages>> {
+  + index() : HTML list view with filters
+  + create() : HTML form (GET) / handler (POST)
+  + actions() : complete or delete (POST)
+  + export() : JSON view
+}
+
+note right of Validator
+  validateCreate returns
+  [isValid, errors, sanitized]
+end note
+
+TaskRepository "1" o-- "*" Task : stores
+Controller ..> Validator : uses
+Controller ..> TaskRepository : uses
+Controller ..> Task : creates
+@enduml

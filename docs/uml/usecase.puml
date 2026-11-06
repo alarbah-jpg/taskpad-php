@@ -1,0 +1,30 @@
+@startuml
+title TaskPad PHP - Use Case Diagram
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+
+actor "Visitor / User" as User
+
+rectangle "TaskPad PHP" {
+  usecase "Create task" as UC1
+  usecase "List tasks" as UC2
+  usecase "Filter tasks\n(text and/or priority)" as UC3
+  usecase "Complete task" as UC4
+  usecase "Delete task" as UC5
+  usecase "Validate and sanitize input" as UC6
+  usecase "View tasks as JSON" as UC7
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC7
+
+UC1 ..> UC6 : <<include>>
+UC3 ..> UC2 : <<extend>>
+UC4 ..> UC6 : <<include>>
+UC5 ..> UC6 : <<include>>
+@enduml

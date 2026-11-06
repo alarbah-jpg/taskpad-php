@@ -1,0 +1,20 @@
+@startuml
+title TaskPad PHP - Activity Diagram: Create a task (Post/Redirect/Get)
+skinparam shadowing false
+
+start
+:User opens create.php (GET);
+:Server shows empty form with CSRF token;
+repeat
+  :User submits the form (POST);
+  :Server validates and sanitizes input\n(title, priority whitelist, due date) and checks CSRF token;
+backward :Server re-renders the form with\nerror messages and the user's entries (HTTP 422);
+repeat while (Input valid?) is (no)
+->yes;
+:TaskRepository appends the task to data/tasks.json;
+:Flash message stored in the session;
+:Server redirects to index.php (HTTP 303);
+:Browser requests the list (GET);
+:List page shows the new task and the flash message;
+stop
+@enduml
