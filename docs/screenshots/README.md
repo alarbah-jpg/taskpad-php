@@ -14,5 +14,3 @@ Put your screenshots in this folder. Name each file `<state>-<device>.png`.
 | 8 | Delete - after (deleted message) | `delete-after-desktop.png` | `delete-after-tablet.png` | `delete-after-mobile.png` |
 
 Optional extras: empty state (`empty-*.png`) and "no matching tasks" state (`nomatch-*.png`).
-
-Replace this placeholder text in your README once the screenshots are added.
